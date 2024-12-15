@@ -4,11 +4,28 @@ services:
   app:
     build:
       context: .
-      dockerfile: Dockerfile  # Make sure this is the correct file name
+      dockerfile: Dockerfile  
     ports:
       - "3000:3000"
     environment:
       - HOST=0.0.0.0
     volumes:
-      - .:/client  # Mount the current directory to /client inside the container
+      - ./client:/client  # Persistent volume mapping
+    networks:
+      app_network:
+        aliases:
+          - app
+    deploy:
+      resources:
+        limits:
+          memory: "256Mi"
+          cpu: "500m"
+        reservations:
+          memory: "128Mi"
+          cpu: "250m"
     command: ["npm", "start"]
+
+networks:
+  app_network:
+    driver: bridge
+
