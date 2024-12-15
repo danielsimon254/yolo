@@ -7,9 +7,13 @@ Install the docker engine here:
 - [Docker](https://docs.docker.com/engine/install/) 
 
 ## How to launch the application 
+pull images from my repository using:
 
+docker pull simondaniel254/daniel-yolo-backend:1.0.0
 
-![Alt text](image.png)
+                # AND
+
+docker pull simondaniel254/daniel-yolo-client:1.0.0
 
 ## How to run the app
-Use vagrant up --provison command
+Use docker compose up command
