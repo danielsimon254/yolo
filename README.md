@@ -9,11 +9,11 @@ Install the docker engine here:
 ## How to launch the application 
 pull images from my repository using:
 
-docker pull simondaniel254/daniel-yolo-backend:1.0.0
+              docker pull simondaniel254/daniel-yolo-backend:1.0.0
 
-                # AND
+# AND
 
-docker pull simondaniel254/daniel-yolo-client:1.0.0
+             docker pull simondaniel254/daniel-yolo-client:1.0.0
 
 ## How to run the app
 Use docker compose up command
