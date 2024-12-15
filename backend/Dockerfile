@@ -1,40 +1,35 @@
-# Build stage
+# Stage 1: Build the app
 FROM node:14 AS build
 
-# Set the working directory in the container
+# Set working directory
 WORKDIR /usr/src/app
 
-# Copy package.json and package-lock.json files to the container
+# Install dependencies
 COPY package*.json ./
-
-# Install application dependencies
 RUN npm install
 
-# Copy the rest of the application code to the container
+# Copy the rest of the application code
 COPY . .
 
-# Final production stage
+# Stage 2: Create the final image
 FROM alpine:3.16.7
 
-# Set the working directory for the production stage
+# Install nodejs and npm in the final image
+RUN apk add --no-cache nodejs npm
+
+# Set working directory
 WORKDIR /backend
 
-# Install nodejs and npm in the production image
-RUN apk update && apk add --update nodejs
-
-# Copy the necessary files from the build stage
+# Copy the app from the build stage
 COPY --from=build /usr/src/app /backend
 
-# Set the environment variable for the app
-ENV NODE_ENV=production
-
-# Expose the port used by the app
-EXPOSE 5000
-
-# Install production dependencies only, clear cache, and prune node_modules
+# Prune npm dependencies and clean the cache
 RUN npm prune --production && \
     npm cache clean --force && \
     rm -rf /tmp/*
+
+# Expose the necessary port
+EXPOSE 5000
 
 # Start the application
 CMD ["npm", "start"]
