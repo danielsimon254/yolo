@@ -1,1 +1,1 @@
-![Alt text](docker-images.png)
+![Alt text](image.png)
