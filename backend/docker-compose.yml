@@ -4,11 +4,28 @@ services:
   app:
     build:
       context: .
-      dockerfile: Dockerfile  # Make sure this is the correct file name
+      dockerfile: Dockerfile  
     ports:
       - "5000:5000"
     environment:
       - NODE_ENV=production
     volumes:
-      - .:/backend  # Mount the current directory to /backend inside the container (optional)
+      - ./backend:/backend  # Persistent volume mapping
+    networks:
+      app_network:
+        aliases:
+          - app
+    deploy:
+      resources:
+        limits:
+          memory: "512Mi"  # Doubled from 256Mi
+          cpu: "500m"
+        reservations:
+          memory: "256Mi"  # Doubled from 128Mi
+          cpu: "250m"
     command: ["npm", "start"]
+
+networks:
+  app_network:
+    driver: bridge
+
