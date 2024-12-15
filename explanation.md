@@ -2,7 +2,7 @@
 ![Alt text](image.png)
 # Begin of Explanation
 
-#1. Choice of Base Image
+# 1. Choice of Base Image
 
 The base images used to build the client and backend images are as follows:
 
@@ -11,7 +11,7 @@ Backend: node:14-alpine3.16 — An LTS version of Node.js, ensuring long-term su
 MongoDB: mongo:6.0 — A stable version of the MongoDB database for storing application data.
 
 
-#2. Dockerfile Directives
+# 2. Dockerfile Directives
 
 Two Dockerfiles were used: one for the client and one for the backend.
 
@@ -64,7 +64,7 @@ EXPOSE 5000
 CMD ["npm", "start"]
 
 
-#3. Docker Compose Networking
+# 3. Docker Compose Networking
 
 The docker-compose.yml file defines the networking configuration and port mappings for the containers:
 
@@ -106,7 +106,7 @@ The MongoDB container maps to port 27017.
 All containers are connected to the app_network bridge network.
 
 
-#4. Docker Compose Volume Definition and Usage
+# 4. Docker Compose Volume Definition and Usage
 
 The docker-compose.yml defines a volume for MongoDB data persistence:
 
@@ -117,7 +117,7 @@ volumes:
     driver: local
 This ensures MongoDB data is retained across container restarts or deletions.
 
-#5. Git Workflow
+# 5. Git Workflow
 
 To implement the task, the following Git workflow was used:
 
